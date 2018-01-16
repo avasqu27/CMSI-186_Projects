@@ -1,6 +1,6 @@
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * File name   : hello.java
- * Purpose     : Displays "Hellow World!"
+ * Purpose     : Displays "Hello, World!"
  * Author      : Alejandra Vasquez 
  * Date        : 01/15/2018
  * Description : None
@@ -8,10 +8,8 @@
  * Warnings    : None
  * Exceptions  : None
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-public class HelloWorld{
+public class Helloworld {
    public static void main( String args[] ) {
-      System.out.println("Hellow, world!");
+      System.out.println("\n Hello, World!" );
    }
-
 }
