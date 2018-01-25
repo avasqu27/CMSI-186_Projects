@@ -42,7 +42,6 @@ public class CalendarStuff {
    *  NOTE: this is optional, but suggested
    */
    private static int[]    days        = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
   /**
    * The constructor for the class
    */
@@ -58,7 +57,7 @@ public class CalendarStuff {
    * @return         boolean which is true if the parameter is a leap year
    */
    public static boolean isLeapYear( long year ) {
-     if ((year%4 == 0) && (!year%100 == 0)) {
+     if ((year%4 == 0) && (year%100 != 0)) {
        return true;
      } else if (year%400 == 0){
        return true;
@@ -76,13 +75,13 @@ public class CalendarStuff {
    *         be decremented to make the appropriate index value
    */
    public static long daysInMonth( long month, long year ) {
-     month = month - 1;
-     if (month == 1) {
+     int month1 = (int) month - 1;
+     if (month1 == 1) {
        if (isLeapYear(year) == true) {
-         return (days[month] + 1);
+         return (days[month1] + 1);
        }
      } else {
-       return days[month];
+       return days[month1];
      }
    }
 
@@ -97,16 +96,17 @@ public class CalendarStuff {
    * @return          boolean which is true if the two dates are exactly the same
    */
    public static boolean dateEquals( long month1, long day1, long year1, long month2, long day2, long year2 ) {
-     long date1 ;
-     date1 = new long [2];
-     date1[0] = month1;
-     date1[1] = day1;
-     date1[2] = year1;
-     long date2 ;
-     date2 = new long [2];
-     date2[0] = month2;
-     date2[1] = day2;
-     date2[2] = year2;
+     int date1[] = { ((int) month1), ((int) day1), ((int) year1) };
+     /*date1 = new int [2];
+     date1[0] = (int) month1;
+     date1[1] = (int) day1;
+     date1[2] = (int) year1;*/
+     int date2[] = { ((int) month2), ((int) day2), ((int) year2)};
+     /* date2 = new int [2];
+     date2[0] = (int) month2;
+     date2[1] = (int) day2;
+     date2[2] = (int) year2;
+     */
      if (date1 == date2){
        return true;
      }
@@ -123,7 +123,7 @@ public class CalendarStuff {
    * @param    year2  long   containing four-digit year
    * @return          int    -1/0/+1 if first date is less than/equal to/greater than second
    */
-   public static int compareDate( long month1, long day1, long year1, long month2, long day2, long year2 ) {
+   public static int compareDate( long month0, long day0, long year0, long month1, long day1, long year1 ) {
      if (year0 < year1) {
        return (-1);
      } else if (year0 > year1) {
@@ -166,7 +166,7 @@ public class CalendarStuff {
                return true;
              }
            } else if (month == 1) {
-             if (isLeapYear(year) == 1) {
+             if (( isLeapYear(year)) == true) {
                if ( (day > 0) && (day <= 29) ) {
                  return true;
                }
@@ -260,67 +260,36 @@ public class CalendarStuff {
    */
    public static long daysBetween( long month0, long day0, long year0, long month1, long day1, long year1 ) {
       long dayCount = 0;
-      long firstdate = {0,0,0};
-      long seconddate = {0,0,0};
 
-      // compares dates to see which is greater
-      // smaller date becomes firstdate
+      // compares dates to see which is greater; smaller date becomes firstdate
       if (year0 < year1) {
-        firstdate[0] = month0-1;
-        firstdate[1] = day0;
-        firstdate[2] = year0;
-        seconddate[0] = month1 -1;
-        seconddate[1] = day1;
-        seconddate[2] = year1;
+        int firstdate[] = { ((int) month0), ((int) day0), ((int) year0)};
+        int seconddate[] = { ((int) month1), ((int) day1), ((int) year1)};
       } else if (year0 > year1) {
-        firstdate[0] = month1 -1;
-        firstdate[1] = day1;
-        firstdate[2] = year1;
-        seconddate[0] = month0 -1;
-        seconddate[1] = day0;
-        seconddate[2] = year0;
+        int firstdate[] = { ((int) month1), ((int) day1), ((int) year1)};
+        int seconddate[] = { ((int) month0), ((int) day0), ((int) year0)};
       } else {
         if (month0 < month1) {
-          firstdate[0] = month0-1;
-          firstdate[1] = day0;
-          firstdate[2] = year0;
-          seconddate[0] = month1 -1;
-          seconddate[1] = day1;
-          seconddate[2] = year1;
+          int firstdate[] = { ((int) month0), ((int) day0), ((int) year0)};
+          int seconddate[] = { ((int) month1), ((int) day1), ((int) year1)};
         } else if (month0 > month1) {
-          firstdate[0] = month1 -1;
-          firstdate[1] = day1;
-          firstdate[2] = year1;
-          seconddate[0] = month0 -1;
-          seconddate[1] = day0;
-          seconddate[2] = year0;
+          int firstdate[] = { ((int) month1), ((int) day1), ((int) year1)};
+          int seconddate[] = { ((int) month0), ((int) day0), ((int) year0)};
         } else {
           if (day0 < day1) {
-            firstdate[0] = month0-1;
-            firstdate[1] = day0;
-            firstdate[2] = year0;
-            seconddate[0] = month1 -1;
-            seconddate[1] = day1;
-            seconddate[2] = year1;
+            int firstdate[] = { ((int) month0), ((int) day0), ((int) year0)};
+            int seconddate[] = { ((int) month1), ((int) day1), ((int) year1)};
           } else if (day0 > day1) {
-            firstdate[0] = month1 -1;
-            firstdate[1] = day1;
-            firstdate[2] = year1;
-            seconddate[0] = month0 -1;
-            seconddate[1] = day0;
-            seconddate[2] = year0;
+            int firstdate[] = { ((int) month1), ((int) day1), ((int) year1)};
+            int seconddate[] = { ((int) month0), ((int) day0), ((int) year0)};
           } else {
-            firstdate[0] = month0-1;
-            firstdate[1] = day0;
-            firstdate[2] = year0;
-            seconddate[0] = month1 -1;
-            seconddate[1] = day1;
-            seconddate[2] = year1;
+            int firstdate[] = { ((int) month0), ((int) day0), ((int) year0)};
+            int seconddate[] = { ((int) month1), ((int) day1), ((int) year1)};
           }
         }
       }
 
-       if ( firstdate[2] == seconddate[2]) {
+    if ( firstdate[2] == seconddate[2]) {
       for (long j = firstdate[0]; j <= seconddate[0]; j++) {
           if (firstdate[0] == seconddate[0]) {
             dayCount = Math.abs(seconddate[1] - firstdate[1]);
@@ -370,4 +339,5 @@ public class CalendarStuff {
      }
    return dayCount;
 
+}
 }
