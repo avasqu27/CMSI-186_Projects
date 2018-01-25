@@ -98,12 +98,12 @@ public class CalendarStuff {
    */
    public static boolean dateEquals( long month1, long day1, long year1, long month2, long day2, long year2 ) {
      long date1 ;
-     date1 = new [2];
+     date1 = new long [2];
      date1[0] = month1;
      date1[1] = day1;
      date1[2] = year1;
      long date2 ;
-     date2 = new [2];
+     date2 = new long [2];
      date2[0] = month2;
      date2[1] = day2;
      date2[2] = year2;
@@ -155,7 +155,7 @@ public class CalendarStuff {
    *         be decremented to make the appropriate index value
    */
    public static boolean isValidDate( long month, long day, long year ) {
-      month = long (month - 1);
+      month = month - 1;
 
      if (year > 0) {
       if ((month >= 0 ) && (month <= 11)) {
@@ -343,7 +343,7 @@ public class CalendarStuff {
          } else {
            dayCount =+ 365;
          }
-       } else if ((firstdate[0] == seconddate[0]) && (firstdate[1] !== seconddate[1])){
+       } else if ( (firstdate[0] == seconddate[0]) && (firstdate[1] != seconddate[1]) ) {
          if ((firstdate[0] == 2) && (isLeapYear(firstdate[2]) == true)) {
            dayCount =+  Math.abs(firstdate[1] - 29);
            firstdate[1] = 0;
