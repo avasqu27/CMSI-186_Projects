@@ -1,6 +1,6 @@
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * File name   : CalendarStuff.java
- * Purpose     : Displays "Hello, World!"
+ * Purpose     : Runs methods to determine day count
  * Author      : Alejandra Vasquez
  * Date        : 01/21/2018
  * Description : None
@@ -78,11 +78,10 @@ public class CalendarStuff {
      int month1 = (int) month - 1;
      if (month1 == 1) {
        if (isLeapYear(year) == true) {
-         return (days[month1] + 1);
+         return (days[(int) month1] + 1);
        }
-     } else {
-       return days[month1];
      }
+       return days[(int) month1];
    }
 
   /**
@@ -95,22 +94,21 @@ public class CalendarStuff {
    * @param    year2  long    containing four-digit year
    * @return          boolean which is true if the two dates are exactly the same
    */
+
    public static boolean dateEquals( long month1, long day1, long year1, long month2, long day2, long year2 ) {
-     int date1[] = { ((int) month1), ((int) day1), ((int) year1) };
-     /*date1 = new int [2];
-     date1[0] = (int) month1;
-     date1[1] = (int) day1;
-     date1[2] = (int) year1;*/
-     int date2[] = { ((int) month2), ((int) day2), ((int) year2)};
-     /* date2 = new int [2];
-     date2[0] = (int) month2;
-     date2[1] = (int) day2;
-     date2[2] = (int) year2;
-     */
-     if (date1 == date2){
-       return true;
+     if (month1 == month2) {
+       if (day1 == day2) {
+         if (year1 == year2){
+           return true;
+         } else {
+           return false;
+         }
+       } else {
+         return false;
+       }
+     } else {
+       return false;
      }
-      return false;
    }
 
   /**
@@ -260,84 +258,98 @@ public class CalendarStuff {
    */
    public static long daysBetween( long month0, long day0, long year0, long month1, long day1, long year1 ) {
       long dayCount = 0;
-
-      // compares dates to see which is greater; smaller date becomes firstdate
-      if (year0 < year1) {
-        int firstdate[] = { ((int) month0), ((int) day0), ((int) year0)};
-        int seconddate[] = { ((int) month1), ((int) day1), ((int) year1)};
-      } else if (year0 > year1) {
-        int firstdate[] = { ((int) month1), ((int) day1), ((int) year1)};
-        int seconddate[] = { ((int) month0), ((int) day0), ((int) year0)};
-      } else {
-        if (month0 < month1) {
-          int firstdate[] = { ((int) month0), ((int) day0), ((int) year0)};
-          int seconddate[] = { ((int) month1), ((int) day1), ((int) year1)};
-        } else if (month0 > month1) {
-          int firstdate[] = { ((int) month1), ((int) day1), ((int) year1)};
-          int seconddate[] = { ((int) month0), ((int) day0), ((int) year0)};
+      int firstdate[] = {0,0,0};
+      int seconddate[] = {0,0,0};
+      int counter = (-1);
+      int counter1 = (-1);
+      int currentmonth = 0;
+      int currentyear = 0;
+      if ((isValidDate(month0, day0, year0) == true) && (isValidDate(month1,day1,year1))) {
+        if (dateEquals(month0, day0, year0, month1, day1, year1) == true) {
+          return dayCount;
         } else {
-          if (day0 < day1) {
-            int firstdate[] = { ((int) month0), ((int) day0), ((int) year0)};
-            int seconddate[] = { ((int) month1), ((int) day1), ((int) year1)};
-          } else if (day0 > day1) {
-            int firstdate[] = { ((int) month1), ((int) day1), ((int) year1)};
-            int seconddate[] = { ((int) month0), ((int) day0), ((int) year0)};
-          } else {
-            int firstdate[] = { ((int) month0), ((int) day0), ((int) year0)};
-            int seconddate[] = { ((int) month1), ((int) day1), ((int) year1)};
+          switch (compareDate(month0, day0, year0, month1, day1, year1)) {
+            // date that comes first in calendar is firstdate
+            case (-1):
+            firstdate[0] = ((int) month0);
+            firstdate[1] =  ((int) day0);
+            firstdate[2] = ((int) year0);
+            seconddate[0] = ((int) month1);
+            seconddate[1] = ((int) day1);
+            seconddate[2] = ((int) year1);
+            case (1):
+            firstdate[0] = ((int) month1);
+            firstdate[1] =  ((int) day1);
+            firstdate[2] = ((int) year1);
+            seconddate[0] = ((int) month0);
+            seconddate[1] = ((int) day0);
+            seconddate[2] = ((int) year0);
           }
         }
-      }
 
-    if ( firstdate[2] == seconddate[2]) {
-      for (long j = firstdate[0]; j <= seconddate[0]; j++) {
+        if (firstdate[2] == seconddate[2]){
           if (firstdate[0] == seconddate[0]) {
-            dayCount = Math.abs(seconddate[1] - firstdate[1]);
+            dayCount = Math.abs( seconddate[1] - firstdate[1]);
+            return dayCount;
           } else {
-            if ((firstdate[0] == 2) && (isLeapYear(firstdate[2]) == true)) {
-              dayCount =+  Math.abs(firstdate[1] - 29);
-              firstdate[1] = 0;
-            } else {
-                dayCount =  Math.abs(firstdate[1]-days[firstdate[0] ] );
-                firstdate[1] = 0;
-               }
-          }
-      }
-    }
-// NOW FOR THE YEARS
-     for (long i = firstdate[2]; i <= seconddate[2]; i++) {
-       if ((firstdate[0] == seconddate[0]) && (firstdate[1] == seconddate[1])) {
-         if (isLeapYear(firstdate[2]) == true) {
-           dayCount =+ 366;
-         } else {
-           dayCount =+ 365;
-         }
-       } else if ( (firstdate[0] == seconddate[0]) && (firstdate[1] != seconddate[1]) ) {
-         if ((firstdate[0] == 2) && (isLeapYear(firstdate[2]) == true)) {
-           dayCount =+  Math.abs(firstdate[1] - 29);
-           firstdate[1] = 0;
-         } else {
-             dayCount =  Math.abs(firstdate[1]-days[firstdate[0] ] ); // get days of first date
-             firstdate[1] = 0;
+            dayCount =+ Math.abs( daysInMonth((firstdate[0]), (firstdate[2])) - firstdate[1]);
+            while (firstdate[0] != seconddate[0]) {
+              if (firstdate[0] == 12) {
+                firstdate[0] = 1;
+                counter = counter + 1;
+              } else {
+                firstdate[0] = firstdate[0] + 1;
+                counter = counter + 1;
+              }
             }
-       } else {
-         for (long j = firstdate[0]; j <= seconddate[0]; j++) {
-             if (firstdate[0] == seconddate[0]) {
-               dayCount =  Math.abs(seconddate[1] - firstdate[1]);
-             } else {
-               if ((firstdate[0] == 2) && (isLeapYear(firstdate[2]) == true)) {
-                 dayCount =+  Math.abs(firstdate[1] - 29);
-                 firstdate[1] = 0;
-               } else {
-                   dayCount =  Math.abs(firstdate[1]-days[firstdate[0] ] );
-                   firstdate[1] = 0;
-                  }
-             }
-         }
-       }
-       //*********************************************
-     }
-   return dayCount;
-
-}
+            for (int i = 0; i <= counter; i++) {
+              // check if year is a leap year
+              currentmonth = firstdate[0] + 1;
+              if ((currentmonth == 1) && (isLeapYear(firstdate[2]))) {
+                dayCount = dayCount + 29;
+              } else {
+                dayCount = dayCount + days[currentmonth];
+              }
+            }
+            return dayCount;
+        }
+      } else {
+        if ((firstdate[0] == seconddate[0]) && (firstdate[1] == seconddate[1])) {
+          counter1 = Math.abs(firstdate[2] - seconddate[2]);
+          currentyear = firstdate[2];
+          for (int j = 0; j <= counter1; j++) {
+            if (isLeapYear(currentyear)) {
+              dayCount =+ 366;
+            } else {
+              dayCount =+ 365;
+            }
+            currentyear = currentyear + 1;
+          }
+          return dayCount;
+        } else {
+          dayCount =+ Math.abs( daysInMonth((firstdate[0]), (firstdate[2])) - firstdate[1]);
+          while (firstdate[0] != seconddate[0]) {
+            if (firstdate[0] == 12) {
+              firstdate[0] = 1;
+              counter = counter + 1;
+            } else {
+              firstdate[0] = firstdate[0] + 1;
+              counter = counter + 1;
+            }
+          }
+          for (int i = 0; i <= counter; i++) {
+            // check if year is a leap year
+            currentmonth = firstdate[0] + 1;
+            if ((currentmonth == 1) && (isLeapYear(firstdate[2]))) {
+              dayCount = dayCount + 29;
+            } else {
+              dayCount = dayCount + days[currentmonth];
+            }
+          }
+          return dayCount;
+        }
+      }
+  } else {
+    return dayCount;
+  }
 }
