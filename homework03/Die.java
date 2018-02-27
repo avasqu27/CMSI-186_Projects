@@ -75,9 +75,11 @@ public class Die {
    * Roll THIS die and return the result
    * @return  integer value of the result of the roll, randomly selected
    */
-   public void roll() {
+   // public void roll() {  THIS IS WRONG -- IT IS SPECIFIED TO RETURN AN int NOT A void
+   public int roll() {
      // sets the number rolled BUT DOES NOT SAVE [that will be done with getValue()]
      pips = (int) (Math.ceil(Math.random()*(sides)));
+     return pips;
    }
 
 

@@ -66,7 +66,8 @@ public String playGame() {
       if ( (count == 0) || (nsides == 0) ) {
         System.out.println("Please set up a dice set before trying this :) ");
       } else {
-        sum = dset1.sum.sum();
+        // sum = dset1.sum.sum();   IS THIS RIGHT?  THERE IS A SUM.SUM()?
+        sum = dset1.sum();
         System.out.println("Your score is " + Integer.toString(sum));
       }
 

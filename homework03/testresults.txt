@@ -1,0 +1,157 @@
+   Test for 5 dice, 6 sides each: There are 5 dice that have 6 sides each.
+There are 5 dice that have 6 sides each.
+   Test for 1 dice, 5 sides each: There are 1 dice that have 5 sides each.
+There are 1 dice that have 5 sides each.
+   Test for 4 dice, 0 sides each: There are 4 dice that have 5 sides each.
+There are 4 dice that have 5 sides each.
+   Test for 3 dice, 0 sides each: There are 4 dice that have 7 sides each.
+There are 4 dice that have 7 sides each.
+   Test for rolling:
+Checking for rolled numbers:
+0000
+Checking for string representation of rolled numbers:
+0
+Checking for sum of rolled numbers:
+The sum of this roll is 0
+The sum of this roll is 0
+The sum of this roll is 0
+The sum of this roll is 0
+
+TESTING THE DIE CLASS: TEST CONSTRUCTOR FOR INVALID NUMBERS OF SIDES:
+Your number of sides is too small! Please enter another value.
+Insert value here:
+Your number of sides is too small! Please enter another value.
+Insert value here:
+Your number of sides is too small! Please enter another value.
+Insert value here:
+Your number of sides is too small! Please enter another value.
+Insert value here:
+TESTING THE DIE CLASS: TESTS ON 4-SIDED DIE:
+   roll() test for 4 sided die:
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   Current value is: 0
+TESTING THE DIE CLASS: TESTS ON 5-SIDED DIE:
+   roll() test for 5 sided die:
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   Current value is: 0
+TESTING THE DIE CLASS: TESTS ON 6-SIDED DIE:
+   roll() test for 6 sided die:
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   Current value is: 0
+TESTING THE DIE CLASS: TESTS ON 7-SIDED DIE:
+   roll() test for 7 sided die:
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   Current value is: 0
+TESTING THE DIE CLASS: TESTS ON 8-SIDED DIE:
+   roll() test for 8 sided die:
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   You rolled a 0
+   Current value is: 0
+TESTING THE DIE CLASS: TESTS ON 11-SIDED DIE USING NEW SIDE COUNT:
+You dice now has 11 sides.
+   Rolling with new side count --
+      You rolled a 4
+      You rolled a 11
+      You rolled a 4
+      You rolled a 3
+      You rolled a 1
+TESTING THE DIE CLASS: TESTS ON 17-SIDED DIE USING NEW SIDE COUNT:
+You dice now has 17 sides.
+   Rolling with new side count --
+      You rolled a 17
+      current value is: 17
+TESTING THE DIE CLASS: TESTS ON 111-SIDED DIE USING NEW SIDE COUNT:
+You dice now has 111 sides.
+   Rolling with new side count --
+      You rolled a 35
+      current value is: 35
+......End of Die Class Testing.....
+
+
+TESTING THE DICESET CLASS: TEST CONSTRUCTOR FOR 3 SIX-SIDED DICE:
+  DiceSet: 3 dice, six sided - ds36:
+There are 3 dice that have 6 sides each.
+      initialized ds36 contents             : DiceSet@3d4eac69
+      after collective roll ds36 contents   : DiceSet@3d4eac69
+      after individual roll(2) ds36 contents: DiceSet@3d4eac69
+The sum of this roll is 0
+      sum of dice values is: 0
+   Re-rolling all dice
+      after collective roll ds36 contents   : DiceSet@3d4eac69
+      after individual roll(2) ds36 contents: DiceSet@3d4eac69
+The sum of this roll is 0
+      sum of dice values is                 : 0
+   Test of getIndividual():
+      value of die at index 0: 0
+      value of die at index 1: 0
+      value of die at index 2: 0
+TESTING THE DICESET CLASS: TEST CONSTRUCTOR FOR 6 NINE-SIDED DICE:
+   DiceSet: 6 dice, nine sided - ds69:
+There are 6 dice that have 9 sides each.
+      initialized ds36 contents             : DiceSet@42a57993
+      after collective roll ds69 contents   : DiceSet@42a57993
+      after individual roll(2) ds69 contents: DiceSet@42a57993
+The sum of this roll is 0
+      sum of dice values is                 : 0
+   Re-rolling all dice
+      after collective roll ds69 contents   : DiceSet@42a57993
+      after individual roll(3) ds69 contents: DiceSet@42a57993
+The sum of this roll is 0
+      sum of dice values is                 : 0
+   Test of getIndividual():
+      value of die at index 0: 0
+      value of die at index 1: 0
+      value of die at index 2: 0
+      value of die at index 3: 0
+      value of die at index 4: 0
+      value of die at index 5: 0
+TESTING THE DICESET CLASS: TEST CONSTRUCTOR FOR 9 SEVENTEEN-SIDED DICE:
+   DiceSet: 9 dice, 17 sided - ds917:
+There are 9 dice that have 17 sides each.
+      initialized ds36 contents              : DiceSet@75b84c92
+      after collective roll ds917 contents   : DiceSet@75b84c92
+      after individual roll(6) ds917 contents: DiceSet@75b84c92
+The sum of this roll is 0
+      sum of dice values is                  : 0
+   Re-rolling all dice
+      after collective roll ds917 contents   : DiceSet@75b84c92
+      after individual roll(8) ds69 contents : DiceSet@75b84c92
+The sum of this roll is 0
+      sum of dice values is                  : 0
+   Test of getIndividual():
+      value of die at index 0: 0
+      value of die at index 1: 0
+      value of die at index 2: 0
+      value of die at index 3: 0
+      value of die at index 4: 0
+      value of die at index 5: 0
+      value of die at index 6: 0
+      value of die at index 7: 0
+      value of die at index 8: 0
+TESTING THE DICESET CLASS: TEST 'isIdentical()' FOR 9 SEVENTEEN-SIDED DICE:
+   Test of isIndentical():
+
+THIS TEST THROWS A NullPointerException WHICH SHOWS THE FOLLOWING STACK TRACE:
+   Exception in thread "main" java.lang.NullPointerException
+        at DiceSet.isIdentical(DiceSet.java:165)
+        at DieAndDiceSetTestHarness.main(DieAndDiceSetTestHarness.java:203)
+
