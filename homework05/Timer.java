@@ -13,7 +13,7 @@
 
 import java.text.DecimalFormat;
 
-public class Timer extends Clock {
+public class Timer  {
   public double time_slice_in_seconds = 1.0;
 //  Clock clock  = new Clock();
   DecimalFormat df = new DecimalFormat("#0.00");
