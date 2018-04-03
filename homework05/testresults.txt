@@ -1,0 +1,168 @@
+.
+.
+======================================
+... Testing Ball class ...
+======================================
+
+ Ball TESTER PROGRAM
+--------------------------
+
+  Creating a new clock:
+    New clock created: position < 0.0 X, 0.0 Y >              velocity < at rest >
+    Testing inputs for Ball()....
+10.0
+10.0
+1.0
+1.0
+position < 10.0 X, 10.0 Y >              velocity < 1.0 X and 1.0 Y > ft/sec
+.
+.
+.
+.
+======================================
+... Testing Timer class ...
+======================================
+
+ Timer TESTER PROGRAM
+--------------------------
+
+Let's try ticking:
+Testing tick(), initial time slice is 10.0 seconds....
+expecting string with 0 for all hours and minutes, and 10.0 seconds values
+ - no joy
+1.0
+.
+.
+======================================
+... Testing SoccerSim no args...
+======================================
+
+HANGS, NO OUTPUT!!
+
+.
+.
+======================================
+... Testing SoccerSim one arg...
+======================================
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1>
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1>
+.
+.
+======================================
+... Testing SoccerSim two args...
+======================================
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1>
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1>
+.
+.
+======================================
+... Testing SoccerSim three args...
+======================================
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1>
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1>
+.
+.
+======================================
+... Testing SoccerSim six args...
+======================================
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1>
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1>
+.
+.
+======================================
+... Testing SoccerSim out of bounds...
+======================================
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1>
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1>
+
+THROWS EXCEPTION
+Exception in thread "main" java.lang.NullPointerException
+        at SoccerSim.isValid(SoccerSim.java:62)
+        at SoccerSim.main(SoccerSim.java:96)
+
+.
+.
+======================================
+... Testing SoccerSim negative time slice...
+======================================
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1>
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1>
+
+THROWS EXCEPTION
+Exception in thread "main" java.lang.NullPointerException
+        at SoccerSim.isValid(SoccerSim.java:73)
+        at SoccerSim.main(SoccerSim.java:96)
+
+.
+.
+======================================
+... Testing SoccerSim time slice too large...
+======================================
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1>
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1>
+
+THROWS EXCEPTION
+Exception in thread "main" java.lang.NullPointerException
+        at SoccerSim.isValid(SoccerSim.java:73)
+        at SoccerSim.main(SoccerSim.java:96)
+
+.
+.
+======================================
+... Testing SoccerSim time slice value of zero...
+======================================
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1>
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1>
+
+THROWS EXCEPTION
+Exception in thread "main" java.lang.NullPointerException
+        at SoccerSim.isValid(SoccerSim.java:73)
+        at SoccerSim.main(SoccerSim.java:96)
+
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim check for collision...
+======================================  
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1> 
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1> 
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball should come to rest...
+======================================  
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1> 
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1> 
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball should go out of bounds...
+======================================  
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1> 
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1> 
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball set six balls subsecond time slice...
+======================================  
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1> 
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1> 
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball set five balls 1.234 second time slice...
+======================================  
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1> 
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1> 
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball set ten balls 10 second time slice...
+======================================  
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist  of 4 inputs per ball. Example: <10 10 1 1> 
+Not a valid statement! You have inserted an invalid number of inputs. Inputs must consist of 4 inputs per ball. Example: <10 10 1 1> 
+.                                       
+.                                       
+======================================  
+... End of SoccerSim Testing...         
+======================================  

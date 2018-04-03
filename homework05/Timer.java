@@ -42,13 +42,13 @@ public class Timer  {
 
    public static void main( String args[] ) {
 
-      Clock clock1  = new Clock();
+      Timer clock1  = new Timer();
       System.out.println( "\n Timer TESTER PROGRAM\n" +
                           "--------------------------\n" );
       System.out.println( "Let's try ticking: " );
       System.out.println("Testing tick(), initial time slice is 10.0 seconds....");
       System.out.println("expecting string with 0 for all hours and minutes, and 10.0 seconds values ");
-      clock1.validateTimeSliceArg("10.0");
+      //clock1.validateTimeSliceArg("10.0");
       try { System.out.println( ((10.0) == clock1.tick()) ? " - got 0:0:10" : " - no joy" ); }
       catch (Exception e ) { System.out.println( "- OOPS! " + e.toString() );}
 

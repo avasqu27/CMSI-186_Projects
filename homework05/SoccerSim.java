@@ -157,10 +157,10 @@ public static void main( String args[] ) throws NumberFormatException {
       }
       if (( Math.abs(soccerBalls.balls[j].ypos - soccerBalls.balls[soccerBalls.balls.length-i].ypos) ) <=  0.37083*2  ) {
         collision = 1;
-        System.out.println("Collision occurred at " + Timer.TimetoString() );
+        System.out.println("Collision occurred at " + timer.TimetoString() );
     } else if ( ( Math.abs(soccerBalls.balls[j].xpos - soccerBalls.balls[soccerBalls.balls.length-i].xpos) ) <= 0.37083*2 ) {
       collision = 1;
-      System.out.println("Collision occurred at " + Timer.TimetoString() );
+      System.out.println("Collision occurred at " + timer.TimetoString() );
     } else if (((soccerBalls.balls[j].xpos + 0.37083) == polepositionx ) | ((soccerBalls.balls[j].xpos - 0.37083) == polepositionx )){
       collision = 1;
     } else if (((soccerBalls.balls[j].ypos + 0.37083) == polepositiony ) | ((soccerBalls.balls[j].ypos - 0.37083) == polepositiony )){
