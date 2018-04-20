@@ -230,66 +230,50 @@ public class BrobInt {
    *  @return BrobInt that is the difference of the value of this BrobInt and the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt subtractByte( BrobInt gint ) {
-//     throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+   // throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
 
-
-
+    // create an array that will hold the difference
     int[] resultByte = null;
-      // create an array that will hold the difference
-        if (compareTo(gint) == 0) {
-          resultByte = new int[internalValue.length()];
-        } else if (compareTo(gint) == 1) {
-          resultByte = new int[internalValue.length()];
-        } else {
-          resultByte = new int[gint.internalValue.length() + 1];
-        }
-        // make the array the length of numbers of the bigger brobint
-
 
 
       int borrow = 0;
       String result = "";
-      for (int i = 0; i > gint.byteVersion.length; i++) {
-        if (borrow == 1) {
-          resultByte[i] = byteVersion[i] - borrow - gint.byteVersion[i];
-          borrow = 0;
-          continue;
-        }
-        if (gint.byteVersion[i] > byteVersion[i]) {
-          borrow = 1;
-          resultByte[i] = (byteVersion[i] + 10) - gint.byteVersion[i];
+      BrobInt larger = null;
+      BrobInt smaller = null;
+
+      // make the array the length of numbers of the bigger brobint
+        if (this.compareTo(gint) == -1) {
+          resultByte = new int[gint.internalValue.length() + 1];
+          larger  = new BrobInt(gint.internalValue);
+          smaller = new BrobInt(internalValue);
         } else {
-          resultByte[i] = byteVersion[i] - gint.byteVersion[i];
+          resultByte = new int[internalValue.length()];
+          larger  = new BrobInt(internalValue);
+          smaller = new BrobInt(gint.internalValue);
         }
-        resultByte[i] = byteVersion[i] - borrow - gint.byteVersion[i];
-        System.out.println(resultByte[i]);
+
+      // actual subtraction
+      for (int i = 0; i < smaller.byteVersion.length; i++) {
+        if (borrow == 1) {
+          resultByte[i] = larger.byteVersion[i] - borrow - smaller.byteVersion[i];
+          borrow = 0;
+        }
+        if (larger.byteVersion[i] < smaller.byteVersion[i]) {
+          borrow = 1;
+          resultByte[i] = (larger.byteVersion[i] + 10) - smaller.byteVersion[i];
+        } else {
+          resultByte[i] = larger.byteVersion[i] - borrow - smaller.byteVersion[i];
+        }
+        result = result + Integer.toString(resultByte[i]);
       }
 
+      for (int j = 0; j < (larger.byteVersion.length - smaller.byteVersion.length ); j++) {
+        result = result + (larger.byteVersion[j + smaller.byteVersion.length] );
+       }
 
-
-/*
-
-      for (int i = 0; i < byteVersion.length; i++) {
-         resultByte[i] = byteVersion[i] + gint.byteVersion[i];
-       //  System.out.println( resultByte[i] );
-
-         if (resultByte[i] > 9) {
-           carry = 1;
-           resultByte[i] = resultByte[i]-10;
-         }
-         result = result + Integer.toString(resultByte[i]);
-
-         if ((byteVersion.length-1 == i) & (carry == 1)){
-           resultByte[i+1] = carry;
-           result = result + Integer.toString(resultByte[i+1]);
-         //  System.out.println( "infiltration" );
-         }
+      if ((compareTo(gint) == -1)){
+        result = result + "-";
       }
-
-*/
-
-
-
 
 // String reverser
       String s1 = result;
@@ -303,7 +287,6 @@ public class BrobInt {
         // charAt returns character at index i
       }
 
-
      BrobInt finalResult = new BrobInt(s2);
      return finalResult ;
    }
@@ -314,8 +297,9 @@ public class BrobInt {
    *  @return BrobInt that is the difference of the value of this BrobInt and the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt subtractInt( BrobInt gint ) {
-     throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
-//      this.subtractByte(gint);
+//     throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+     BrobInt finalResult = subtractByte(gint);
+     return finalResult;
    }
 
    /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -324,7 +308,7 @@ public class BrobInt {
     *  @return BrobInt that is the sum of the value of this BrobInt and the one passed in
     *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     public String subtract( BrobInt gint ) {
-       String result = subtractByte(gint).internalValue;
+       String result = this.subtractByte(gint).internalValue;
        return result;
     }
 
@@ -388,17 +372,31 @@ public class BrobInt {
   *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
   //***********************************   DEPRECATION  HERE   **************************************************
   public int compareTo( BrobInt gint ) {
-     if( internalValue.length() > (gint.internalValue).length() ) {
+
+    // handle the signs here
+     if( 1 == sign && 0 == gint.sign ) {
+        return -1;
+     } else if( 0 == sign && 1 == gint.sign ) {
         return 1;
-     } else if( internalValue.length() < (gint.internalValue).length() ) {
+     }
+
+    // the signs are the same at this point
+    // check the length and return the appropriate value
+    //   1 means this is longer than gint, hence larger
+    //  -1 means gint is longer than this, hence larger
+     if( internalValue.length() > gint.internalValue.length() ) {
+        return 1;
+     } else if( internalValue.length() < gint.internalValue.length() ) {
         return (-1);
+
+    // otherwise, they are the same length, so compare absolute values
      } else {
         for( int i = 0; i < internalValue.length(); i++ ) {
-           char a = Character.valueOf( internalValue.charAt(i) );
-           char b = Character.valueOf( gint.internalValue.charAt(i) );
-           if(  Character.valueOf(a).compareTo( Character.valueOf(b) ) > 0 ) {
+           Character a = Character.valueOf( internalValue.charAt(i) );
+           Character b = Character.valueOf( gint.internalValue.charAt(i) );
+           if( Character.valueOf(a).compareTo( Character.valueOf(b) ) > 0 ) {
               return 1;
-           } else if(  Character.valueOf(a).compareTo( Character.valueOf(b) ) < 0 ) {
+           } else if( Character.valueOf(a).compareTo( Character.valueOf(b) ) < 0 ) {
               return (-1);
            }
         }
@@ -528,6 +526,18 @@ public class BrobInt {
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  BUUUUDOOP" ); }
 
+      try {
+         System.out.println( "    Test 003: Making a new BrobInt: " );
+         g13 = new BrobInt( g13String );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  BEEDOOP" ); }
+
+      try {
+         System.out.println( "    Test 004: Making a new BrobInt: " );
+         g11 = new BrobInt( g11String );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  BEEDOOP" ); }
+
 
       System.out.println( "\n\n    TESTING ADD() AND ADDINT() METHODS:\n" +
                           "    =======================================" );
@@ -568,7 +578,7 @@ public class BrobInt {
          System.out.println( "      expecting: 234557\n" +
                              "        and got: " + g13.subtract( g11 ) );
       }
-      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); e.printStackTrace(); }
 
 
 }
