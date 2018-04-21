@@ -58,22 +58,44 @@ public class BrobInt {
    public BrobInt( String value ) {
      // we define the brobint
      internalValue = value;
-     String s1 = value;
+
+
+     if (value.substring(0,1).equals("-") == true ) {
+       System.out.println(value.substring(0,1));
+       sign = 1;
+       internalValue = value.substring(1);
+//       System.out.println(sign  + " and new internalValue: " + internalValue);
+     }
+
+    // System.out.println("past if statement");
+
+
+     String s1 = internalValue;
      String s2 = "";
-     int valuelength = value.length() - 1;
+     int valuelength = internalValue.length() - 1;
      int currentlet = 0;
 
+
+
      for (int i = 0; i <= (valuelength); i++) {
+      // System.out.println("Check1: Nothin' wrong");
        currentlet = valuelength - i;
        s2 = s2 + s1.charAt(currentlet);
+    //   System.out.println("Check2: No wrongin' ");
        // charAt returns character at index i
      }
 
+  //   System.out.println("past for statement ");
+
      int pos1 = s2.length();
+
      byteVersion = new byte[pos1];
+
+    // System.out.println("Check5: No wrongin'");
      for (int j = 0; j < (s2.length()); j++) {
        byteVersion[j] = (byte) (Integer.parseInt(s2.substring( j, (j+1))));
      }
+//     System.out.println(" BUT has the exception been thrown yet?");
 
    }
 
@@ -152,9 +174,56 @@ public class BrobInt {
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt addByte( BrobInt gint ) {
 
-
      int[] resultByte = null;
-     // create an array that will hold the sum
+     BrobInt larger = null;
+     BrobInt smaller = null;
+     int carry = 0;
+     String result = "";
+
+     int negativei = 0;
+     int negativeg = 0;
+
+
+     if (gint.sign  == 1 ) {
+       negativei = 1;
+//       System.out.println(sign  + " and new internalValue: " + internalValue);
+     }
+
+     if (sign  == 1 ) {
+       negativeg = 1;
+//       System.out.println(sign  + " and new internalValue: " + internalValue);
+     }
+
+
+
+/*     if (internalValue.charAt(0) == '-') {
+       System.out.println("has negatuve");
+       internalValue = internalValue.substring(1,internalValue.length()-1);
+       negativei = 1;
+     }
+     if (gint.internalValue.charAt(0) == '-') {
+       System.out.println("has negative");
+       gint.internalValue = gint.internalValue.substring(1,internalValue.length()-1);
+       negativeg = 1;
+     }
+     */
+
+
+     if (this.compareTo(gint) == -1) {
+       resultByte = new int[gint.internalValue.length() + 1];
+       larger  = new BrobInt(gint.internalValue);
+       smaller = new BrobInt(internalValue);
+     } else {
+       resultByte = new int[internalValue.length() + 1];
+       larger  = new BrobInt(internalValue);
+       smaller = new BrobInt(gint.internalValue);
+     }
+     // make the array the length of numbers of the bigger brobint
+
+
+
+
+/*
      if (compareTo(gint) == 0) {
        resultByte = new int[internalValue.length()];
      } else if (compareTo(gint) == 1) {
@@ -162,14 +231,13 @@ public class BrobInt {
      } else {
        resultByte = new int[gint.internalValue.length() + 1];
      }
-     // make the array the length of numbers of the bigger brobint
+     */
 
-     int carry = 0;
-     String result = "";
 
-     // does not take into account which is longer
-     for (int i = 0; i < byteVersion.length; i++) {
+    // actual addition
+     for (int i = 0; i < smaller.byteVersion.length; i++) {
         resultByte[i] = byteVersion[i] + gint.byteVersion[i];
+        //System.out.println(resultByte[i]);
       //  System.out.println( resultByte[i] );
 
         if (resultByte[i] > 9) {
@@ -178,17 +246,28 @@ public class BrobInt {
         }
         result = result + Integer.toString(resultByte[i]);
 
-        if ((byteVersion.length-1 == i) & (carry == 1)){
-          resultByte[i+1] = carry;
+        if ((larger.byteVersion.length-1 == i) & (carry == 1)){
+          //resultByte[i+1] = carry;
           result = result + Integer.toString(resultByte[i+1]);
         //  System.out.println( "infiltration" );
         }
      }
 
+     for (int j = 0; j < (larger.byteVersion.length - smaller.byteVersion.length ); j++) {
+        result = result + (larger.byteVersion[j + smaller.byteVersion.length] );
+      }
+
+      if ((negativei == 1) & (negativeg == 1)){
+        result = result + "-";
+      }
+
+
+// reverse
      String s1 = result;
      String s2 = "";
      int resultBytelength = result.length() - 1;
      int currentlet = 0;
+
 
      for (int i = 0; i <= (resultBytelength); i++) {
        currentlet = resultBytelength - i;
@@ -375,7 +454,7 @@ public class BrobInt {
 
     // handle the signs here
      if( 1 == sign && 0 == gint.sign ) {
-        return -1;
+        return (-1);
      } else if( 0 == sign && 1 == gint.sign ) {
         return 1;
      }
@@ -423,8 +502,13 @@ public class BrobInt {
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public static BrobInt valueOf( long value ) throws NumberFormatException {
      BrobInt gi = null;
+     String val = Long.valueOf( value ).toString();
+//     System.out.println(sign);
+/*     if ( 1 == sign){
+       val = "-" + val;
+     }*/
     try {
-       gi = new BrobInt( Long.valueOf( value ).toString() );
+       gi = new BrobInt( val );
     }
     catch( NumberFormatException nfe ) {
        System.out.println( "\n  Sorry, the value must be numeric of type long." );
@@ -438,9 +522,15 @@ public class BrobInt {
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public String toString() {
      String byteVersionOutput = "";
+
       for( int i = 0; i < byteVersion.length; i++ ) {
          byteVersionOutput = byteVersionOutput.concat( Byte.toString( byteVersion[i] ) );
       }
+
+      if (1 == sign){
+        byteVersionOutput = "-" + byteVersionOutput;
+      }
+
       byteVersionOutput = new String( new StringBuffer( byteVersionOutput ).reverse() );
       return internalValue;
 //      return this.internalValue;
@@ -463,7 +553,6 @@ public class BrobInt {
    public static void main( String[] args ) {
       System.out.println( "\n  Hello, world, from the BrobInt program!!\n" );
       System.out.println( "\n   You should run your tests from the BrobIntTester...\n" );
-
 
 
        String g01String = "144127909719710664015092431502440849849506284148982076191826176553";
@@ -507,6 +596,20 @@ public class BrobInt {
 
       System.out.println( "    TESTING CONSTRUCTOR AND CONSTANTS:\n" +
                           "    ==================================" );
+
+      System.out.println( "\n    Test 020: Making a fourteenth new BrobInt: "  );
+      try {
+         g14 = new BrobInt( g14String );
+      }
+    catch( Exception e ) { System.out.println( "        Exception thrown:  " ); /*e.printStackTrace();*/  }
+    try {
+       System.out.println( "      expecting: " + g01String + "\n" +
+                           "        and got: " + g1.toString() );
+    }
+    catch( Exception e ) { System.out.println( "        Exception thrown:  BEEBOOP" ); }
+
+
+      /*
       try {
          System.out.println( "    Test 001: Making a new BrobInt: " );
          g1 = new BrobInt( g01String );
@@ -579,6 +682,8 @@ public class BrobInt {
                              "        and got: " + g13.subtract( g11 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); e.printStackTrace(); }
+
+      */
 
 
 }
