@@ -44,7 +44,7 @@ public class BrobInt {
 //  public static final BrobInt MIN_LONG = new BrobInt(  Long.valueOf( Long.MIN_VALUE ).toString() );
 
   /// These are the internal fields
-   private String internalValue = "";        // internal String representation of this BrobInt
+   public String internalValue = "";        // internal String representation of this BrobInt
    private byte   sign          = 0;         // "0" is positive, "1" is negative
    private String reversed      = "";        // the backwards version of the internal String representation
    private byte[] byteVersion   = null;      // byte array for storing the string values
@@ -199,7 +199,7 @@ public class BrobInt {
       // Forming and implementing the carry
         if ((resultByte[i] ) > 9) {
           while ((resultByte[i]) > 9){
-          carry = 1;
+          carry = carry + 1;
           resultByte[i] = resultByte[i]-10;
         }
         } else {
@@ -212,11 +212,11 @@ public class BrobInt {
 
         // If there is still a carry by the time the last digit is added,
         //    create a new place in the resultByte array that holds the carry value.
-        if ((larger.byteVersion.length-1 == i) & (carry == 1)){
-          resultByte[i+1] = carry;
+        if ((larger.byteVersion.length-1 == i) & (carry <= 1)){
+          resultByte[i+1] = carry + larger.byteVersion[larger.byteVersion.length-1];
           result = result + Integer.toString(resultByte[i+1]);
         //  System.out.println( "infiltration" );
-        }
+      }
      }
 
      // Adds the remaining digits to the result String
@@ -272,6 +272,7 @@ public class BrobInt {
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt addInt( BrobInt gint ) {
      BrobInt result = addByte(gint);
+
       //throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
       return result;
    }
@@ -283,6 +284,9 @@ public class BrobInt {
     *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     public String add( BrobInt gint ) {
        String result = addByte(gint).internalValue;
+       if ((gint.sign == 1) & (sign == 1) ){
+         result = "-" + result;
+       }
        return result;
     }
 
@@ -390,24 +394,25 @@ public class BrobInt {
     String[] resultByteString = null;
     int counter = 1;
       String result = "0";
-      BrobInt larger = null;
-      BrobInt smaller = null;
+      //BrobInt larger = null;
+      //BrobInt smaller = null;
 
       BrobInt resulting = new BrobInt(internalValue);
-      BrobInt pastBrob = new BrobInt(internalValue);
+      //BrobInt pastBrob = new BrobInt(internalValue);
 
       System.out.println(resulting.internalValue);
-      System.out.println(pastBrob.internalValue);
+    //  System.out.println(pastBrob.internalValue);
 
-/*
+
       while (counter != Integer.valueOf(gint.internalValue)) {
-        resulting = resulting.addByte(pastBrob);
+        resulting = addByte(resulting);
+      //  System.out.println(resulting.internalValue);
         counter = counter + 1;
       //  System.out.println(resulting.internalValue);
       //  System.out.println("counter: " + counter);
       }
-      */
 
+/*
       if (this.compareTo(gint) == -1) {
         //resultByte = new int[gint.internalValue.length() + 2];
 //        resultByteString = new String[gint.internalValue.length() + 2];
@@ -427,12 +432,12 @@ public class BrobInt {
         counter = counter + 1;
       }
       System.out.println(resultingBrob);
-
-System.out.println("internalValue is: " + resulting.internalValue);
+*/
+//System.out.println("internalValue is: " + resulting.internalValue);
     //  B//robInt finalres = new BrobInt(resultingBrob);
 
   //    return finalres;
-  return resulting;
+ return resulting;
 
 /*
   for (int j = 0; j < smaller.byteVersion.length; j++){
@@ -464,14 +469,15 @@ System.out.println("internalValue is: " + resulting.internalValue);
         result = result + Integer.toString(resultByte[i]);
       }
 
-*/
-/*
+
+
       if (j == 0){
         resultByteString[j] = "0" + result;
       } else {
         resultByteString[j] = resultByteString[j] + result ;
       }
       */
+
 /*
       String s1 = result;
       String s2 = "";
