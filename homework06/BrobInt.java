@@ -37,11 +37,11 @@ public class BrobInt {
 
 
   /// Some constants for other intrinsic data types
-  ///  these can help speed up the math if they fit into the proper memory space
-//  public static final BrobInt MAX_INT  = new BrobInt(  Integer.valueOf( Integer.MAX_VALUE ).toString() );
-//  public static final BrobInt MIN_INT  = new BrobInt(  Integer.valueOf( Integer.MIN_VALUE ).toString() );
-//  public static final BrobInt MAX_LONG = new BrobInt(  Long.valueOf( Long.MAX_VALUE ).toString() );
-//  public static final BrobInt MIN_LONG = new BrobInt(  Long.valueOf( Long.MIN_VALUE ).toString() );
+  ///these can help speed up the math if they fit into the proper memory space
+  //public static final BrobInt MAX_INT  = new BrobInt(  Integer.valueOf( Integer.MAX_VALUE ).toString() );
+  //public static final BrobInt MIN_INT  = new BrobInt(  Integer.valueOf( Integer.MIN_VALUE ).toString() );
+  //public static final BrobInt MAX_LONG = new BrobInt(  Long.valueOf( Long.MAX_VALUE ).toString() );
+  //public static final BrobInt MIN_LONG = new BrobInt(  Long.valueOf( Long.MIN_VALUE ).toString() );
 
   /// These are the internal fields
    public String internalValue = "";        // internal String representation of this BrobInt
@@ -80,11 +80,11 @@ public class BrobInt {
       // System.out.println("Check1: Nothin' wrong");
        currentlet = valuelength - i;
        s2 = s2 + s1.charAt(currentlet);
-    //   System.out.println("Check2: No wrongin' ");
+       // System.out.println("Check2: No wrongin' ");
        // charAt returns character at index i
      }
 
-  //   System.out.println("past for statement ");
+     //System.out.println("past for statement ");
 
      int pos1 = s2.length();
 
@@ -94,7 +94,7 @@ public class BrobInt {
      for (int j = 0; j < (s2.length()); j++) {
        byteVersion[j] = (byte) (Integer.parseInt(s2.substring( j, (j+1))));
      }
-//     System.out.println(" BUT has the exception been thrown yet?");
+    // System.out.println(" BUT has the exception been thrown yet?");
 
    }
 
@@ -118,7 +118,7 @@ public class BrobInt {
        }
      }
      return true;
-//     throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+   //throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -254,7 +254,7 @@ public class BrobInt {
      }
 
      // prints out the result that will go into the new BrobInt
-//     System.out.println("     My input for the new BrobInt is: " + s2);
+     // System.out.println("     My input for the new BrobInt is: " + s2);
 
      // Clarifies where the sign went; the sign went into the sign variable in BrobInt Constructor
      // Constructor set up the value so that the intervalValue variable ONLY contains numbers,
@@ -276,7 +276,6 @@ public class BrobInt {
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt addInt( BrobInt gint ) {
      BrobInt result = addByte(gint);
-
       //throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
       return result;
    }
@@ -351,16 +350,6 @@ public class BrobInt {
         s2 = s2 + s1.charAt(currentlet);
         // charAt returns character at index i
       }
-/*
-      // Adds the minus sign at the beginning of the new un-reversed string
-      if ((compareTo(gint) == -1) && (sign == 1) && (gint.sign == 1)){
-        s2 = s2;
-      } else if ((compareTo(gint) == 1) && (sign == 1) && (gint.sign == 1)){
-        s2 = "-" + s2;
-      } else if ((compareTo(gint) == -1) ) {
-        s2 =  "-" + s2;
-      }
-*/
 
       BrobInt finalResult = new BrobInt(s2);
       if ((this.compareTo(gint) == 1) & (this.sign == 1)){
@@ -411,9 +400,6 @@ public class BrobInt {
    public BrobInt multiply( BrobInt gint ) {
       //throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
     int counter = 1;
-    //  String result = "0";
-      //BrobInt larger = null;
-      //BrobInt smaller = null;
 
       BrobInt resulting = new BrobInt(internalValue);
       //BrobInt pastBrob = new BrobInt(internalValue);
@@ -431,50 +417,7 @@ public class BrobInt {
       }
 
        return resulting;
-/*
-      String s1 = result;
-      String s2 = "";
-      int resultBytelength = result.length() - 1;
-      int currentlet = 0;
 
-
-      for (int w = 0; w <= (resultBytelength); w++) {
-        currentlet = resultBytelength - w;
-        s2 = s2 + s1.charAt(currentlet);
-        System.out.println(s2);
-        // charAt returns character at index w
-      }
-
-
-      // System.out.println("Current result: " + resultByteString[j]);
-    }
-
-    // Reverses the result string
-    String s1 = result;
-    String s2 = "";
-    int resultBytelength = result.length() - 1;
-    int currentlet = 0;
-
-    for (int i = 0; i <= (resultBytelength); i++) {
-      currentlet = resultBytelength - i;
-      s2 = s2 + s1.charAt(currentlet);
-      // charAt returns character at index i
-    }
-
-    String result1 = "";
-    BrobInt newBrob = new BrobInt(resultByteString[0]);
-
-    for ( int k = 1; k < resultByteString.length-1; k++ ) {
-      newBrob = (newBrob).addByte(new BrobInt(resultByteString[k]));
-    }
-
-    result1 = newBrob.internalValue;
-    System.out.println("Result is: " + result1);
-    BrobInt finalBrobInt = new BrobInt(result1);
-    return finalBrobInt;
-
-n
-*/
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -509,8 +452,8 @@ n
       resulting = subtractByte(resulting);
     //  System.out.println(resulting.internalValue);
       counter = counter + 1;
-  //    System.out.println(resulting.internalValue);
-  //    System.out.println("counter: " + counter);
+    //  System.out.println(resulting.internalValue);
+    //  System.out.println("counter: " + counter);
     }
 
      return resulting;
@@ -522,13 +465,11 @@ n
    *  @return BrobInt that is the remainder of division of this BrobInt by the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt remainder( BrobInt gint ) {
-
      String result = subtract(this.divide(gint).multiply(gint));
-
      BrobInt resulting = new BrobInt(result);
 
      return resulting;
-//      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+     //throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
    }
 
 
@@ -541,7 +482,6 @@ n
   *        It takes into account the length of the two numbers, and if that isn't enough it does a
   *        character by character comparison to determine
   *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  //***********************************   DEPRECATION  HERE   **************************************************
   public int compareTo( BrobInt gint ) {
 
     // handle the signs here
@@ -595,10 +535,11 @@ n
    public static BrobInt valueOf( long value ) throws NumberFormatException {
      BrobInt gi = null;
      String val = Long.valueOf( value ).toString();
-//     System.out.println(sign);
+  // System.out.println(sign);
 /*     if ( 1 == sign){
        val = "-" + val;
-     }*/
+     }
+*/
     try {
        gi = new BrobInt( val );
     }
@@ -619,13 +560,12 @@ n
          byteVersionOutput = byteVersionOutput.concat( Byte.toString( byteVersion[i] ) );
       }
 
-      if (1 == sign){
+      if (1 == sign) {
         byteVersionOutput = "-" + byteVersionOutput;
       }
 
       byteVersionOutput = new String( new StringBuffer( byteVersionOutput ).reverse() );
       return internalValue;
-//      return this.internalValue;
    }
 
 
