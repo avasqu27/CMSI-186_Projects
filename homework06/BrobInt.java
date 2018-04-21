@@ -4,7 +4,7 @@
  * @author    :  B.J. Johnson
  * Date       :  2017-04-04
  * Description:  @see <a href='http://bjohnson.lmu.build/cmsi186web/homework06.html'>Assignment Page</a>
- * Notes      :  Signs do not show in some methods; in all methods, the sign is saved in the variable sign. 
+ * Notes      :  None
  * Warnings   :  None
  *
  *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -200,24 +200,28 @@ public class BrobInt {
         if ((resultByte[i] ) > 9) {
           while ((resultByte[i]) > 9){
           carry = carry + 1;
+          //System.out.println("I just got a carry");
           resultByte[i] = resultByte[i]-10;
         }
-        } else {
+      } else {
           // Regardless of what happened, adds existing carry
           resultByte[i] = resultByte[i] + carry;
+        //  System.out.println("Result rn is: " + Integer.toString(resultByte[i]) + "      carry: " + Integer.toString(carry));
         }
+
 
         // adds the results to a String
         result = result + Integer.toString(resultByte[i]);
 
         // If there is still a carry by the time the last digit is added,
         //    create a new place in the resultByte array that holds the carry value.
-        if ((larger.byteVersion.length-1 == i) & (carry <= 1)){
+        if ((larger.byteVersion.length-1 == i) && (carry == 1)){
           resultByte[i+1] = carry + larger.byteVersion[larger.byteVersion.length-1];
+        //  System.out.println(resultByte[i+1]);
           result = result + Integer.toString(resultByte[i+1]);
         //  System.out.println( "infiltration" );
       }
-     }
+   }
 
      // Adds the remaining digits to the result String
      for (int j = 0; j < (larger.byteVersion.length - smaller.byteVersion.length ); j++) {
@@ -263,7 +267,7 @@ public class BrobInt {
      }
 */
     return finalResult;
-   }
+ }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    *  Method to add the value of a BrobIntk passed as argument to this BrobInt using int array
@@ -347,7 +351,7 @@ public class BrobInt {
         s2 = s2 + s1.charAt(currentlet);
         // charAt returns character at index i
       }
-
+/*
       // Adds the minus sign at the beginning of the new un-reversed string
       if ((compareTo(gint) == -1) && (sign == 1) && (gint.sign == 1)){
         s2 = s2;
@@ -356,10 +360,20 @@ public class BrobInt {
       } else if ((compareTo(gint) == -1) ) {
         s2 =  "-" + s2;
       }
+*/
 
-      //System.out.println("My input for the new BrobInt is: " + s2);
+      BrobInt finalResult = new BrobInt(s2);
+      if ((this.compareTo(gint) == 1) & (this.sign == 1)){
+        finalResult = new BrobInt("-" + s2);
+        s2 = "-" + s2;
+      } else if ( ((this.compareTo(gint) == -1) & (gint.sign == 0))){
+        finalResult = new BrobInt("-" + s2);
+        s2 = "-" + s2;
+      }
 
-     BrobInt finalResult = new BrobInt(s2);
+    //  System.out.println("My input for the new BrobInt is: " + s2);
+
+    // BrobInt finalResult = new BrobInt(s2);
      return finalResult ;
    }
 
@@ -381,6 +395,11 @@ public class BrobInt {
     *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     public String subtract( BrobInt gint ) {
        String result = this.subtractByte(gint).internalValue;
+       if ((this.compareTo(gint) == 1) & (this.sign == 1)){
+         result = "-" + result;
+       } else if ( ((this.compareTo(gint) == -1) & (gint.sign == 0))){
+         result = "-" + result;
+       }
        return result;
     }
 
@@ -390,10 +409,9 @@ public class BrobInt {
    *  @return BrobInt that is the product of the value of this BrobInt and the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt multiply( BrobInt gint ) {
-    //  throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
-    String[] resultByteString = null;
+      //throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
     int counter = 1;
-      String result = "0";
+    //  String result = "0";
       //BrobInt larger = null;
       //BrobInt smaller = null;
 
@@ -412,72 +430,7 @@ public class BrobInt {
       //  System.out.println("counter: " + counter);
       }
 
-/*
-      if (this.compareTo(gint) == -1) {
-        //resultByte = new int[gint.internalValue.length() + 2];
-//        resultByteString = new String[gint.internalValue.length() + 2];
-        larger  = new BrobInt(gint.internalValue);
-        smaller = new BrobInt(internalValue);
-      } else {
-      //  resultByte = new int[internalValue.length() + 2];
-//        resultByteString = new String[internalValue.length() + 2];
-        larger  = new BrobInt(internalValue);
-        smaller = new BrobInt(gint.internalValue);
-      }
-
-      counter = 1;
-      String resultingBrob = smaller.addByte(smaller).internalValue;
-      while (counter != Integer.valueOf(larger.internalValue)){
-        resultingBrob = new BrobInt(resultingBrob).addByte(smaller).internalValue;
-        counter = counter + 1;
-      }
-      System.out.println(resultingBrob);
-*/
-//System.out.println("internalValue is: " + resulting.internalValue);
-    //  B//robInt finalres = new BrobInt(resultingBrob);
-
-  //    return finalres;
- return resulting;
-
-/*
-  for (int j = 0; j < smaller.byteVersion.length; j++){
-    result = "";
-    int counter = 0;
-
-      for (int i = 0; i < larger.byteVersion.length; i++) {
-        while (counter != j) {
-          resultByte[i] = 0 + resultByte[i] ;
-          counter += 1;
-        }
-        resultByte[i] = resultByte[i] + smaller.byteVersion[j] * larger.byteVersion[i] + carry;
-        carry = 0;
-        if ((resultByte[i] ) > 9) {
-          while ((resultByte[i]) > 9){
-          carry += 1;
-          resultByte[i] = resultByte[i]-10;
-        }
-        } else {
-          resultByte[i] = resultByte[i] + carry;
-        }
-
-        // If there is still a carry by the time the last digit is added,
-        //    create a new place in the resultByte array that holds the carry value.
-        if ((larger.byteVersion.length-1 == i) & (carry == 1)){
-          resultByte[i+1] = carry;
-        }
-        // Regardless of what happened, adds existing carry
-        result = result + Integer.toString(resultByte[i]);
-      }
-
-
-
-      if (j == 0){
-        resultByteString[j] = "0" + result;
-      } else {
-        resultByteString[j] = resultByteString[j] + result ;
-      }
-      */
-
+       return resulting;
 /*
       String s1 = result;
       String s2 = "";
@@ -520,98 +473,47 @@ public class BrobInt {
     BrobInt finalBrobInt = new BrobInt(result1);
     return finalBrobInt;
 
-
-
-
+n
 */
-
-
-
-
-
-
-
-
-
-
-
-      // RUSSIAN PEASANT MMMMMMMMUUUUUUULLLLLLLTTTTTTTIIIIIIIIPPPPPPPLLLLLLLLLIIIIIICCCCCAAAAATTTTTTIIIIIIONNNNN!!!!!!!!!!!!
-      // OR USE THE PSEODOCODE BJ GAVE US
-
-//      int a = internalValue.length();
-  //    int b = gint.internalValue.length();
-  /*
-  int newsign = 0;
-  if (gint.sign  == 1 ) {
-    negativei = 1;
-//       System.out.println(sign  + " and new internalValue: " + internalValue);
-  }
-
-  if (sign  == 1 ) {
-    negativeg = 1;
-//       System.out.println(sign  + " and new internalValue: " + internalValue);
-  }
-  if ((gint.sign == 1) & (sing == 1)){
-    newsign = 0;
-  } else {
-    newsign = 1;
-  }
-      int resultByte = [];
-      String resultString = "";
-
-      if (this.compareTo(gint) == -1) {
-        resultByte = new int[gint.internalValue.length() + 1];
-        larger  = new BrobInt(gint.internalValue);
-        smaller = new BrobInt(internalValue);
-      } else {
-        resultByte = new int[internalValue.length()];
-        larger  = new BrobInt(internalValue);
-        smaller = new BrobInt(gint.internalValue);
-      }
-
-      int a = 0;
-      int b = 0;
-
-      for (int i = 0; i < larger.internalValue.length(); i++) {
-        int carry = 0;
-        resultByte[i] = gint.internalValue[i];
-        b = 0;
-        for (int j = 0; j < smaller.internalValue.length(); j++ ){
-
-        }
-
-      }
-*/
-
-
-
-
-      /*
-      for (let i = 0; i < gint.byteVersion.length; i++){
-        resultByte[i] = this.byteVersion[i] * gint.byteVersion[i];
-        if (resultByte[i] > 9) {
-          carry = Math.abs(10-resultByte[i]);
-          resultByte[i] = Math.abs(resultByte[i]-10);
-          if (i == byteVersion.length-1) {
-            resultByte[i+1] = carry;
-            result = Integer.toString(resultByte(i+1));
-          }
-        }
-        result = Integer.toString(resultByte(i));
-
-
-      }*/
-
-//      BrobInt finalResult = subtractByte(gint);
-  //    return finalResult;
    }
+
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    *  Method to divide the value of this BrobIntk by the BrobInt passed as argument
    *  @param  gint         BrobInt to divide this by
    *  @return BrobInt that is the dividend of this BrobInt divided by the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt divide( BrobInt gint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+   //   throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+     int counter = 1;
+
+
+    // System.out.println(resulting.internalValue);
+
+    BrobInt larger  = null;
+    BrobInt smaller = null;
+
+    if (this.compareTo(gint) == -1) {
+      //resultByte = new int[gint.internalValue.length() + 1];
+     larger  = new BrobInt(gint.internalValue);
+     smaller = new BrobInt(internalValue);
+    } else {
+    //  resultByte = new int[internalValue.length()];
+     larger  = new BrobInt(internalValue);
+     smaller = new BrobInt(gint.internalValue);
+    }
+
+    BrobInt resulting = new BrobInt(smaller.internalValue);
+
+
+    while (counter != Integer.valueOf(larger.internalValue)) {
+      resulting = subtractByte(resulting);
+    //  System.out.println(resulting.internalValue);
+      counter = counter + 1;
+  //    System.out.println(resulting.internalValue);
+  //    System.out.println("counter: " + counter);
+    }
+
+     return resulting;
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -620,7 +522,13 @@ public class BrobInt {
    *  @return BrobInt that is the remainder of division of this BrobInt by the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt remainder( BrobInt gint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+
+     String result = subtract(this.divide(gint).multiply(gint));
+
+     BrobInt resulting = new BrobInt(result);
+
+     return resulting;
+//      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
    }
 
 
