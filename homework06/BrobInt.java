@@ -4,7 +4,7 @@
  * @author    :  B.J. Johnson
  * Date       :  2017-04-04
  * Description:  @see <a href='http://bjohnson.lmu.build/cmsi186web/homework06.html'>Assignment Page</a>
- * Notes      :  None
+ * Notes      :  Signs do not show in some methods; in all methods, the sign is saved in the variable sign. 
  * Warnings   :  None
  *
  *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
