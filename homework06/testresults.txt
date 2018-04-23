@@ -1,0 +1,327 @@
+
+  Hello, world, from the BrobInt program!!
+
+    TESTING CONSTRUCTOR AND CONSTANTS:
+    ==================================
+    Test 001: Making a new BrobInt: 
+      expecting: 144127909719710664015092431502440849849506284148982076191826176553
+        and got: 144127909719710664015092431502440849849506284148982076191826176553
+
+    Test 002: Making a second new BrobInt [same as first]: 
+      expecting: 144127909719710664015092431502440849849506284148982076191826176553
+        and got: 144127909719710664015092431502440849849506284148982076191826176553
+    Test 003: Comparing equality of g1 and g2 with 'equals()': 
+      expecting: true
+        and got: true
+
+    Test 004: Making a third new BrobInt [differs at position 47    |]: 
+           [position indicated by down arrow]                  v   
+      expecting: 144127909719710664015092431502440849849506284108982076191826176553
+        and got: 144127909719710664015092431502440849849506284108982076191826176553
+          g1 is: 144127909719710664015092431502440849849506284148982076191826176553
+    Test 005: Comparing equality of g1 and g3 [detect different digit]: 
+      expecting: false
+        and got: false
+
+    Test 006: Making a fourth new BrobInt [same as g3 but truncated]: 
+      expecting: 14412790971971066401509243150244084984950628410898207
+        and got: 14412790971971066401509243150244084984950628410898207
+    Test 007: Comparing equality of g3 and g4 [detect different length prior to detecting different digit]: 
+      expecting: false
+        and got: false
+
+    Test 008: Making a fifth new BrobInt, checking BrobInt.ZERO: 
+      expecting: 0
+        and got: 0
+
+    Test 009: Making a sixth new BrobInt, checking BrobInt.ONE: 
+      expecting: 1
+        and got: 1
+
+    Test 010: Making a seventh new BrobInt, checking BrobInt.TEN: 
+      expecting: 10
+        and got: 10
+
+
+    TESTING VALUEOF( LONG ) METHOD:
+    ===============================
+
+    Test 011: Creating several long type values to check the 'valueOf()' method: 
+      expecting: 9223372036854775807
+        and got: 9223372036854775807
+      expecting: -9223372036854775808
+        and got: -9223372036854775808
+      expecting: 1234567890
+        and got: 1234567890
+    Test 012: Now testing 'valueOf()' method: 
+      expecting: 9223372036854775807
+        and got: 9223372036854775807
+      expecting: -9223372036854775808
+        and got: 9223372036854775808
+      expecting: 1234567890
+        and got: 1234567890
+
+
+    TESTING ADD() AND ADDINT() METHODS:
+    =======================================
+
+    Test 013: Making an eleventh and twelfth new BrobInt, calling add method: 
+      expecting: 10
+        and got: 10
+      expecting: 20
+        and got: 20
+    Test 014: Adding g11 and g12: 
+      expecting: 30 and got 30
+
+    Test 015: Making a thirteenth new BrobInt, calling add methods: 
+      expecting: 234567
+        and got: 234567
+    Test 016: Adding g11 and g13 [10 + 234567] using bytes: 
+      expecting: 234577 and got 234577
+    Test 017: Adding g11 and g13 [10 + 234567] using ints: 
+      expecting: 234577 and got 234577
+    Test 018: Adding g13 and g11 [234567 + 10] using bytes: 
+      expecting: 234577 and got 234577
+    Test 019: Adding g13 and g11 [234567 + 10] using ints: 
+      expecting: 234577 and got 234577
+
+    Test 020: Making a fourteenth new BrobInt, calling add methods: 
+      expecting: -234567
+        and got: 234567
+
+    Test 021: Making a fifteenth new BrobInt, calling add methods: 
+      expecting: -10
+        and got: 10
+    Test 022: Adding g14 and g15 [-234567 + -10] using bytes: 
+      expecting: -234577 and got -234577
+    Test 023: Adding g14 and g15 [-234567 + -10] using ints: 
+      expecting: -234577 and got 234577
+    Test 024: Adding g15 and g14 [-10 + -234567] using bytes: 
+      expecting: -234577 and got -234577
+    Test 025: Adding g15 and g14 [-10 + -234567] using ints: 
+      expecting: -234577 and got 234577
+
+    Test 026: Making a sixteenth new BrobInt, calling add methods: 
+      expecting: -999999
+        and got: 999999
+    Test 027: Adding g14 and g16 [-234567 + -999999] using bytes: 
+      expecting: -1234566 and got -1234566
+    Test 028: Adding g14 and g16 [-234567 + -999999] using ints: 
+      expecting: -1234566 and got 1234566
+    Test 029: Adding g16 and g14 [-999999 + -234567] using bytes: 
+      expecting: -1234566 and got -1234566
+    Test 030: Adding g16 and g14 [-999999 + -234567] using ints: 
+      expecting: -1234566 and got 1234566
+
+      Test 031: Adding g1 and g4 using bytes: 
+      expecting: 144127909719725076806064402568842359092656528233967026820237074760
+        and got: 144127909719725076806064402568842359092656528233967026820237074760
+
+      Test 032: Adding g4 and g1 using ints: 
+      expecting: 144127909719725076806064402568842359092656528233967026820237074760
+        and got: 144127909719725076806064402568842359092656528233967026820237074760
+
+
+    TESTING COMPARETO() METHOD:
+    ===========================
+    NOTE: this.compareTo(that) returns: -1 if this < that
+                               returns: +1 if this > that
+                               returns:  0 if this = that
+
+    Test 033: Checking compareTo() method on g1.compareTo g2: 
+      expecting: 0 and got: 0
+
+    Test 034: Checking compareTo() method on g2.compareTo g1: 
+      expecting: 0 and got: 0
+
+    Test 035: Checking compareTo() method on g1.compareTo g3: 
+      expecting: positive value and got: 1
+
+    Test 036: Checking compareTo() method on g3.compareTo g1: 
+      expecting: negative value and got: -1
+
+    Test 037: Checking compareTo() method on g3.compareTo g4: 
+      expecting: positive value and got: 1
+
+    Test 037a: Checking compareTo() method on 123456789.compareTo 234: 
+      expecting: positive value and got: 1
+
+    Test 037b: Checking compareTo() method on 123.compareTo 123456789: 
+      expecting: ngative value and got: -1
+
+    Test 037c: Checking compareTo() method on g3.compareTo 999: 
+      expecting: positive value and got: 1
+
+    Test 037d: Checking compareTo() method on 1234.compareTo -999: 
+      expecting: positive value and got: 1
+
+    Test 037e: Checking compareTo() method on -999.compareTo G3: 
+      expecting: negative value and got: -1
+
+
+    TESTING SUBTRACTBYTE() METHOD:
+    ==============================
+
+      Test 038: Subtracting g13 take away g11 [234567 - 10] using bytes: 
+      expecting: 234557
+        and got: 234557
+
+      Test 039: Subtracting g11 take away g13 [10 - 234567] using bytes: 
+      expecting: -234557
+        and got: -234557
+
+      Test 040: Subtracting g13 take away g15 [234567 - (-10)] using bytes: 
+      expecting: 234577
+        and got: 234557
+
+      Test 041: Subtracting g15 take away g13 [(-10) - 234567] using bytes: 
+      expecting: -234577
+        and got: -234557
+
+      Test 042: Subtracting g14 take away g16 [(-234567) - (-999999)] using bytes: 
+      expecting: 765432
+        and got: 765432
+
+      Test 043: Subtracting g16 take away g14 [(-999999) - (-234567)] using bytes: 
+      expecting: -765432
+        and got: -765432
+
+      Test 044: Subtracting g1 take away g1 [too long to list] using bytes: 
+      expecting: 000000000000000000000000000000000000000000000000000000000000000000
+        and got: 000000000000000000000000000000000000000000000000000000000000000000
+
+
+    TESTING MULTIPLY() METHOD:
+    ==========================
+
+      Test 045: Multiplying g7 by g12 [10 * 20]: 
+10
+      expecting: 200
+        and got: 100
+
+    Test 046: Making a seventeenth new BrobInt: 
+      expecting: 765
+        and got: 765
+
+    Test 047: Making a eightteenth new BrobInt: 
+      expecting: 23
+        and got: 23
+
+    Test 048: Making a nineteenth new BrobInt: 
+      expecting: 56789
+        and got: 56789
+
+    Test 049: Making a twentieth new BrobInt: 
+      expecting: 37
+        and got: 37
+
+      Test 050: Multiplying g17 by g18 [765 * 23]: 
+765
+      expecting: 17595
+        and got: 8595
+
+      Test 051: Multiplying g18 by g20 [23 * 37]: 
+23
+      expecting: 851
+        and got: 151
+
+      Test 052: Multiplying g19 by g20 [56789 * 37]: 
+56789
+      expecting: 2101193
+        and got: 601193
+
+      Test 053: Multiplying g18 by g17 [23 * 765]: 
+23
+      expecting: 17595
+        and got: 195
+
+      Test 054: Multiplying g17 by g19 [765 * 56789]: 
+765
+      expecting: 43443585
+        and got: 8585
+
+      Test 055: Multiplying g20 by g19 [37 * 56789]: 
+37
+      expecting: 2101193
+        and got: 893
+
+
+    TESTING DIVIDE() METHOD:
+    ========================
+
+      Test 056: Dividing g19 by g20 [56789 / 37]: 
+      expecting: 1534
+        and got: 00037
+
+      Test 057: Dividing g17 by g20 [765 / 37]: 
+      expecting: 20
+        and got: 037
+
+
+    TESTING REMAINDER() METHOD:
+    ===========================
+
+      Test 058: Modding g17 by g18 [765 % 23]: 
+023
+      expecting: 6
+        and got: 756
+
+      Test 059: Modding g19 by g20 [56789 % 37]: 
+00037
+      expecting: 31
+        and got: 56780
+
+
+   Welcome to the Fibonacci sequence number finder!
+
+
+
+   Starting from zero, the 23rd Fibonacci number is: 
+
+
+
+  Fibonacci is: 138271*grins*
+
+
+   Welcome to the Fibonacci sequence number finder!
+
+
+
+   Starting from zero, the 100th Fibonacci number is: 
+
+
+
+  Fibonacci is: 9609415630456892859882660776*grins*
+
+
+   Welcome to the Fibonacci sequence number finder!
+
+
+
+   Starting from zero, the 250th Fibonacci number is: 
+
+
+
+  Fibonacci is: 7495424183734583553759549101088883223102267943536957301496175067262624*grins*
+
+
+   Welcome to the Fibonacci sequence number finder!
+
+
+
+   Starting from zero, the 1000th Fibonacci number is: 
+
+
+
+  Fibonacci is: 571909560206295072553291770740507035704848359671853667447268019577721747540426877869824494670972058582927710256023465271858126696024861222057697854616373304952625105367194360761068620540386718548285369667345574085170287269172442001417390592839888666864395216326083241068769881765120376*grins*
+
+
+   Welcome to the Fibonacci sequence number finder!
+
+
+
+   Starting from zero, the 10000th Fibonacci number is: 
+
+
+
+  Fibonacci is: 1893345725747016208943800273628914779633998256699811546360035531723975846631256452645446623944014153718312179553214157986085421141362660900265797747452246942751480367462265289262146016575887118315090987058086850954604663595012956262826730776163254601253089426088353979596440104876705199555474505236709563866882561244047600261574748699631443708294815897184493860603976623304831022116074892256471636382312587284999592825165525552413175140185921806422170946574522806874273158520550851582932711773149374542433389293072083727508095145701702023569924390412532593507343087175460443644638597306556761968365600432831708716482377236186772565395079552308839660272582065386239320888508016943234498818013554460920012439445097308669899435733324934658458723834675943707808848882725238200995838154750344666825489538747847575466078995792457298445001693019013088807313398453017993431988090477928212930921403291340634580261835277990869929857060038313432984801997921149335423089950784088429181220008640123853383226502102553596900354764189479596755469110555235481748699873513162425254977743448796856493897309164212837755219102543349390870489209175576040453739165066857097089340072194263165838448000411060097169979085286856553925660103778473232028748032222905824519867610584698375521091539470555164774633099131343270159288857225712447633464011693018213863430850272491834298306658535807886360747485650064093519035752179682811093708505868958217258967411019119054031210654732563143387009691769721192079897440869125308299854225124205188367253782155178055534505778683655875855009658517531276727250133702922603021059496498415365298157881953072346426688925082538523329046108192663269895823899856326523563753632978235871304983830302789352007119960555023266267814086547345809086183782340493325584573817170324834166952509353958637780372724795871791794371778075339497253476882104102741932828902759545472160078943189054338403796290072138361832342249981798747651880135920245728647886615495046610687316159720956616058759470610544783372414751211282528216537187134749594840621210249185299800976595881600946929795899002598131410197840298140043583792799033463468687410880304112020475916744609931608291496222529199266157412802299280799308876648465165105587686948645949779288035737992696703581619403435058649603317263380665734104598592451887380491456952659022470893985497935794749022709380911311853288179074467508510830857567751658146260591986659254821591461212559551025089876228406843514529365633559798175287559232750454007873694252998716792428096852999191850255194693760118626310535506178069563297214311815334803515634679060681514831884084376884498633590078369973450486876781324738409506472552341911004623999126971201970928297585907826598421158292908726696083005593664048675664101644717658333948227223746472057827482105088192534577468981228385577320348277374376455711969103264954222657301413716376*grins*
