@@ -123,8 +123,6 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
 
    DynamicChangeMaker dynamicDuo = new DynamicChangeMaker();
   dynamicDuo.setArray(denom);
-  // integers are taken into the program
-
   dynamicDuo.checkArray();
 
   Tuple[][] t = new Tuple[denom.length][target+1];
@@ -144,7 +142,7 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
         // Otherwise, this is NOT column zero
        } else if (i%j == 0 ) {
          t[i][j] = new Tuple(1);
-          (t[i][j]).setElement(i,1);
+         //(t[i][j]).setElement(i,1);
           // returns int type
 //          t[i][j] = new Tuple(t[i][j].data);
           if (i != 0 ) {
@@ -163,6 +161,8 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
             } else {
               t[i][j] = ( t[i][j] ).add( t[i][j - denom[i]] );
             }
+          } else {
+            t[i][j] = new Tuple(0);
           }
         }
         }
@@ -195,16 +195,40 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
         }
       }
     }
+
     System.out.println(lowest.toString());
+
+
     return lowest;
 }
 
+}
+
+
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  Method to return string saying BAD DATA
+ *  @return  String data type
+ *  @throws  IllegalArgumentException if something is hinky
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*
-public static void main( int[] denom, int target ) {
-  makeChangeWithDynamicProgramming(denom,target);
-  System.out.println();
+public void main( String[] args) {
+  throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+
+
+  String output = "";
+
+   for( int i = 0; i < byteVersion.length; i++ ) {
+      byteVersionOutput = byteVersionOutput.concat( Byte.toString( byteVersion[i] ) );
+   }
+
+   if (1 == sign) {
+     byteVersionOutput = "-" + byteVersionOutput;
+   }
+
+   byteVersionOutput = new String( new StringBuffer( byteVersionOutput ).reverse() );
+   return internalValue;
+
+
+
 }
 */
-
-}
-
