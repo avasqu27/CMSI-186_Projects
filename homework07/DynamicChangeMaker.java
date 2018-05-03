@@ -51,22 +51,16 @@ public static int[] setArray(int[] n) {
       // zero or negative arguments
       n = 1;
       BadData(n);
-      System.out.println("   ");
-      System.out.println("   ");
       //return 1;
     } else if ( repeats() == 1) {
       // repeated arguments
       n = 2;
       BadData(n);
-      System.out.println("   ");
-      System.out.println("   ");
       //return 1;
     } else if (indexArray.length > 2) {
       // not enough arguments
       n = 3;
       BadData(n);
-      System.out.println("   ");
-      System.out.println("   ");
       //return 1;
     }
     else {
@@ -86,9 +80,9 @@ public static int[] setArray(int[] n) {
 public static int repeats() {
   // throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
   for (int i = 0; i < indexArray.length-1; i++) {
-    for (int j = 1; i < indexArray.length; j++) {
+    for (int j = 1; j < indexArray.length-1; j++) {
       if (indexArray[i] == indexArray[j]) {
-        System.out.println("Inside the repeat loop: elements equal each other!");
+        //System.out.println("Inside the repeat loop: elements equal each other!");
         return 1;
       }
     }
@@ -131,15 +125,9 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
   dynamicDuo.setArray(denom);
   // integers are taken into the program
 
-
-  /*
-  for (int i = 0; i < denom.length; i++) {
-    indexArray[i] = denom[i];
-  }
-  */
   dynamicDuo.checkArray();
 
-  Tuple[][] t = new Tuple[denom.length][target];
+  Tuple[][] t = new Tuple[denom.length][target+1];
   /*
   Tuple[][] t = new Tuple [rows][columns]
      where rows is argument length
@@ -151,10 +139,14 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
       // Special case for column zero for all rows
       if( j == 0 ) {
         t[i][j] = new Tuple(denom.length);
+        //(t[i][j]).setElement(i,1);
         // creates a tuple (< 0, 0, 0 >) of zeroes of denom.length
         // Otherwise, this is NOT column zero
        } else if (i%j == 0 ) {
-          t[i][j].setElement(i,1);
+         t[i][j] = new Tuple(1);
+          (t[i][j]).setElement(i,1);
+          // returns int type
+//          t[i][j] = new Tuple(t[i][j].data);
           if (i != 0 ) {
             // there is a valid tuple going up,
             if ( t[i-1][j].isImpossible() ) {
@@ -164,6 +156,7 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
             }
           }
           // going backward
+          if (i != 0 ) {
           if ((j- denom[i]) >= 0) {
             if ( t[i][j - denom[i]].isImpossible() ) {
               t[i][j] = new Tuple(0);
@@ -171,6 +164,7 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
               t[i][j] = ( t[i][j] ).add( t[i][j - denom[i]] );
             }
           }
+        }
         }
         // but if remainder is NOT zero,
         else {
@@ -201,39 +195,16 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
         }
       }
     }
-
-
+    System.out.println(lowest.toString());
     return lowest;
 }
 
-
-}
-
-
-/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  Method to return string saying BAD DATA
- *  @return  String data type
- *  @throws  IllegalArgumentException if something is hinky
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*
-public void main( String[] args) {
-  throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
-
-
-  String output = "";
-
-   for( int i = 0; i < byteVersion.length; i++ ) {
-      byteVersionOutput = byteVersionOutput.concat( Byte.toString( byteVersion[i] ) );
-   }
-
-   if (1 == sign) {
-     byteVersionOutput = "-" + byteVersionOutput;
-   }
-
-   byteVersionOutput = new String( new StringBuffer( byteVersionOutput ).reverse() );
-   return internalValue;
-
-
-
+public static void main( int[] denom, int target ) {
+  makeChangeWithDynamicProgramming(denom,target);
+  System.out.println();
 }
 */
+
+}
+
