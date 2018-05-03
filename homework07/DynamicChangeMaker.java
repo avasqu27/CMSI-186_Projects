@@ -162,6 +162,7 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
               t[i][j] = ( t[i][j] ).add( t[i][j - denom[i]] );
             }
           } else {
+            t[i][j].isImpossible();
             t[i][j] = new Tuple(0);
           }
         }
@@ -195,13 +196,9 @@ public static Tuple makeChangeWithDynamicProgramming( int[] denom, int target) {
         }
       }
     }
-
     System.out.println(lowest.toString());
-
-
     return lowest;
 }
-
 }
 
 
